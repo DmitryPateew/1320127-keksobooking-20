@@ -1,5 +1,6 @@
 'use strict';
 
+
 var CHARS_FOR_RANDOM = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
 var START_TYPE = 1;
 var FINISH_TYPE = 4;
@@ -47,6 +48,7 @@ function getRandomInt(min, max) {
 var getType = function () {
   var type;
   switch (getRandomInt(START_TYPE, FINISH_TYPE)) {
+
     case 1:
       type = 'palace';
       break;
@@ -126,7 +128,9 @@ var getX = function (id) {
   var x = data[id].map(function (location) {
     return location.x;
   });
+
   var k = x[LOCATION_ID_IN_ARRAY];
+
   return k;
 };
 
@@ -134,14 +138,18 @@ var getY = function (id) {
   var y = data[id].map(function (location) {
     return location.y;
   });
+
   var k = y[LOCATION_ID_IN_ARRAY];
+
   return k;
 };
 
 var makeImgTeg = function (id) {
   id = id + 1;
   var img = document.createElement(IMG);
+
   img.setAttribute(STYLE, ATTRIBUTES_FOR_IMG);
+
   img.srcset = authorAvatar(id);
   return img;
 };
@@ -158,6 +166,7 @@ var createPinElement = function (id) {
 var pinList = document.querySelector('.map__pins');
 
 var fragment = document.createDocumentFragment();
+
 for (var i = 0; i < PIN_COUNT; i++) {
   fragment.appendChild(createPinElement(i));
 }
