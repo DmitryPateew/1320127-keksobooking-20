@@ -94,7 +94,7 @@ var createOffer = function () {
   };
   return offer;
 };
-
+var ler;
 var createLocation = function () {
   var location = {
     x: getRandomInt(X_LOCATION_START, X_LOCATION_FINISH),
