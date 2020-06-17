@@ -103,8 +103,6 @@ var createLocation = function () {
   return location;
 };
 
-
-
 var authorAvatar = function (id) {
   return AVATAR_FOLDER + id + AVATAR_EXTENSION;
 };
