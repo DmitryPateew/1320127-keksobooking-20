@@ -172,3 +172,60 @@ for (var i = 0; i < PIN_COUNT; i++) {
 }
 
 pinList.appendChild(fragment);
+
+var disable = true;
+
+var disableEnableInputs = function (disableEnable) {
+  var fildset = document.querySelectorAll('.ad-form__element');
+  for (var i = 0; i < fildset.length; i++) {
+    fildset[i].disabled = disableEnable;
+  }
+  var picture = document.querySelector('.ad-form-header');
+  picture.disabled = disableEnable;
+};
+
+disableEnableInputs(disable);
+
+var mainPin = document.querySelector('.map__pin--main');
+
+var getCoords = function (elem) {
+  var box = elem.getBoundingClientRect();
+  var coords = box.top + pageYOffset + ' координата X= ' + box.left + pageXOffset;
+  return coords;
+};
+
+var insertCoords = function () {
+  var adressField = document.querySelector('#address');
+  adressField.disabled = true;
+  adressField.value = getCoords(mainPin);
+};
+
+insertCoords();
+
+var activationMap = function () {
+  var enable = false;
+  var activ = document.querySelector('.map');
+  var formActiv = document.querySelector('.ad-form');
+
+  mainPin.addEventListener('click', function () {
+    activ.classList.remove('map--faded');
+    formActiv.classList.remove('ad-form--disabled');
+    disableEnableInputs(enable);
+  });
+  mainPin.addEventListener('keypress', function (evt) {
+    if (evt.key === 'Enter') {
+      activ.classList.remove('map--faded');
+      formActiv.classList.remove('ad-form--disabled');
+      disableEnableInputs(enable);
+    }
+  });
+  mainPin.removeEventListener('click', function () {
+  });
+  mainPin.removeEventListener('keypress', function () {
+  });
+
+};
+
+activationMap();
+
+
