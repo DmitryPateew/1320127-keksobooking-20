@@ -177,7 +177,7 @@ var disable = true;
 
 var disableEnableInputs = function (disableEnable) {
   var fildset = document.querySelectorAll('.ad-form__element');
-  for (var i = 0; i < fildset.length; i++) {
+  for (i = 0; i < fildset.length; i++) {
     fildset[i].disabled = disableEnable;
   }
   var picture = document.querySelector('.ad-form-header');
