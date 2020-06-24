@@ -35,6 +35,7 @@
       }
     });
   };
+
   titleValidation();
 
   var price = document.querySelector('#price');
@@ -47,7 +48,6 @@
       } else {
         price.setCustomValidity('');
       }
-
     });
   };
 
@@ -78,6 +78,7 @@
       }
     });
   };
+
   priceValidation();
 
   var checkValidation = function (toogle) {
@@ -112,6 +113,21 @@
   checkValidation(DEPEND_CHECK_OUT);
   checkValidation(DEPEND_CHECK_IN);
 
+  var createOption = function (value, guest) {
+    var option = document.createElement('option');
+    var forGuest = 'для ';
+    if (guest === undefined) {
+      guest = ' гостей';
+    }
+    option.value = value;
+    option.innerText = forGuest + value + guest;
+
+    if (value === '0') {
+      option.innerText = 'не ' + forGuest + guest;
+    }
+    return option;
+  };
+
   var countGuestsValidation = function () {
     var room = document.querySelector('#room_number');
     var guests = document.querySelector('#capacity');
@@ -119,24 +135,23 @@
     room.addEventListener('change', function () {
       switch (room.value) {
         case '1':
-          guests.remove(1);
-          guests.remove(2);
-          guests.remove(3);
+          guests.innerHTML = "";
+          guests.appendChild(createOption('1', ' гостя'));
           break;
         case '2':
-          guests.remove(0);
-          guests.remove(2);
-          guests.remove(3);
+          guests.innerHTML = "";
+          guests.appendChild(createOption('1', ' гостя'));
+          guests.appendChild(createOption('2'));
           break;
         case '3':
-          guests.remove(0);
-          guests.remove(1);
-          guests.remove(3);
+          guests.innerHTML = "";
+          guests.appendChild(createOption('1', ' гостя'));
+          guests.appendChild(createOption('2'));
+          guests.appendChild(createOption('3'));
           break;
         case '100':
-          guests.remove(0);
-          guests.remove(1);
-          guests.remove(1);
+          guests.innerHTML = "";
+          guests.appendChild(createOption('0'));
           break;
       }
     });

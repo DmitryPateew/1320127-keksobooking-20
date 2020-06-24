@@ -21,7 +21,6 @@ var Y_LOCATION_START = 130;
 var Y_LOCATION_FINSH = 630;
 var AVATAR_FOLDER = 'img/avatars/user0';
 var AVATAR_EXTENSION = '.png';
-var LOCATION_ID_IN_ARRAY = 2;
 var PIN_COUNT = 8;
 var ATTRIBUTES_FOR_IMG = 'width:40px;  height=40px; draggable=false; alt=Метка объявления';
 var STYLE = 'style';
@@ -110,7 +109,12 @@ var authorAvatar = function (id) {
 };
 
 var createKeksPin = function (id) {
-  return [authorAvatar(id), createOffer(), createLocation()];
+  var pin = {
+    author: authorAvatar(id),
+    offer: createOffer(),
+    location: createLocation()
+  };
+  return pin;
 };
 
 var data = [];
@@ -123,26 +127,6 @@ var createData = function () {
 };
 
 createData();
-
-var getX = function (id) {
-  var x = data[id].map(function (location) {
-    return location.x;
-  });
-
-  var k = x[LOCATION_ID_IN_ARRAY];
-
-  return k;
-};
-
-var getY = function (id) {
-  var y = data[id].map(function (location) {
-    return location.y;
-  });
-
-  var k = y[LOCATION_ID_IN_ARRAY];
-
-  return k;
-};
 
 var makeImgTeg = function (id) {
   id = id + 1;
@@ -157,8 +141,8 @@ var makeImgTeg = function (id) {
 var createPinElement = function (id) {
   var element = document.createElement(BUTTON);
   element.classList.add('map__pin');
-  element.style.left = getX(id) + PX;
-  element.style.top = getY(id) + PX;
+  element.style.left = data[id].location.x + PX;
+  element.style.top = data[id].location.y + PX;
   element.appendChild(makeImgTeg(id));
   return element;
 };
