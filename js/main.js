@@ -172,20 +172,6 @@ disableEnableInputs(disable);
 
 var mainPin = document.querySelector('.map__pin--main');
 
-var getCoords = function (elem) {
-  var box = elem.getBoundingClientRect();
-  var coords = box.top + pageYOffset + ' координата X= ' + box.left + pageXOffset;
-  return coords;
-};
-
-var insertCoords = function () {
-  var adressField = document.querySelector('#address');
-  adressField.disabled = true;
-  adressField.value = getCoords(mainPin);
-};
-
-insertCoords();
-
 var activationMap = function () {
   var enable = false;
   var activ = document.querySelector('.map');
