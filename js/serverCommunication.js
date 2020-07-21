@@ -1,6 +1,6 @@
 'use strict';
 (function () {
-  window.load = function (url, onSuccess, onError) {
+  window.serverCommunication = function (onSuccess, onError, Url, method, formElement) {
     var xhr = new XMLHttpRequest();
 
     xhr.responseType = 'json';
@@ -23,7 +23,11 @@
 
     xhr.timeout = 10000;
 
-    xhr.open('GET', url);
+    xhr.open(method, Url);
+    if (formElement) {
+      xhr.send(new FormData(formElement));
+    }
+
     xhr.send();
   };
 })();
