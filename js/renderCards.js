@@ -21,12 +21,19 @@
     });
 
     close.addEventListener('keypress', function (evt) {
+      if (evt.key === 'Enter') {
+        var exectCard = document.querySelector('.popup');
+        exectCard.remove();
+      }
+    });
+    document.addEventListener('keypress', function (evt) {
       if (evt.key === 'Esc') {
         var exectCard = document.querySelector('.popup');
         exectCard.remove();
       }
     });
-
+    document.removeEventListener('keypress', function () {
+    });
     close.removeEventListener('click', function () {
     });
     close.removeEventListener('keypress', function () {
@@ -35,7 +42,7 @@
     if (data[id].author.avatar) {
       img.src = data[id].author.avatar;
     } else {
-      img.hidden = true;
+      img.remove();
     }
     var title = clone.querySelector('.popup__title');
     if (data[id].offer.title) {
@@ -107,7 +114,7 @@
     var photos = clone.querySelector('.popup__photos');
     var photo = clone.querySelector('.popup__photo');
 
-    if (data[id].offer.photos) {
+    if (data[id].offer.photos !== []) {
       for (var iter = 0; iter < data[id].offer.photos.length; iter++) {
         photo.src = data[id].offer.photos[iter];
         var newClonePhoto = photo.cloneNode();

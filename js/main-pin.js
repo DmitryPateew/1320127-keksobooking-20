@@ -11,7 +11,7 @@
   var adressField = document.querySelector('#address');
 
   adressField.disabled = true;
-  adressField.value = '570px' + '375px';
+  adressField.value = '570px ' + '375px';
 
   mainPin.addEventListener('mousedown', function (evt) {
     evt.preventDefault();

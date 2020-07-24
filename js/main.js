@@ -3,7 +3,7 @@
 
   var disable = true;
 
-  var disableEnableInputs = function (disableEnable) {
+  window.disableEnableInputs = function (disableEnable) {
     var fildset = document.querySelectorAll('.ad-form__element');
     for (var i = 0; i < fildset.length; i++) {
       fildset[i].disabled = disableEnable;
@@ -12,7 +12,7 @@
     picture.disabled = disableEnable;
   };
 
-  disableEnableInputs(disable);
+  window.disableEnableInputs(disable);
 
   var mainPin = document.querySelector('.map__pin--main');
 
@@ -24,7 +24,7 @@
     mainPin.addEventListener('click', function () {
       activ.classList.remove('map--faded');
       formActiv.classList.remove('ad-form--disabled');
-      disableEnableInputs(enable);
+      window.disableEnableInputs(enable);
       window.filter();
       window.sendForm();
     });
@@ -32,7 +32,7 @@
       if (evt.key === 'Enter') {
         activ.classList.remove('map--faded');
         formActiv.classList.remove('ad-form--disabled');
-        disableEnableInputs(enable);
+        window.disableEnableInputs(enable);
       }
     });
     mainPin.removeEventListener('click', function () {

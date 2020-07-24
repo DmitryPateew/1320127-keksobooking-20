@@ -1,6 +1,6 @@
 'use strict';
 (function () {
-  window.serverCommunication = function (onSuccess, onError, Url, method, formElement) {
+  window.serverCommunication = function (onSuccess, onError, Url, method, formData) {
     var xhr = new XMLHttpRequest();
 
     xhr.responseType = 'json';
@@ -23,11 +23,12 @@
 
     xhr.timeout = 10000;
 
-    xhr.open(method, Url);
-    if (formElement) {
-      xhr.send(new FormData(formElement));
+    if (formData) {
+      xhr.open(method, Url);
+      xhr.send(formData);
+    } else {
+      xhr.open(method, Url);
+      xhr.send();
     }
-
-    xhr.send();
   };
 })();
