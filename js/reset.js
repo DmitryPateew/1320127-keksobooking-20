@@ -1,6 +1,11 @@
 'use strict';
 (function () {
   window.getSiteInStart = function () {
+    var mainPin = document.querySelector('.map__pin--main');
+    mainPin.addEventListener('click', window.activationMap);
+    mainPin.addEventListener('mousedown', window.activationMap);
+
+    var START_PRICE = '1000';
     var disable = true;
     window.disableEnableInputs(disable);
     var activ = document.querySelector('.map');
@@ -16,30 +21,27 @@
     if (popup) {
       popup.remove();
     }
+    var price = document.querySelector('#price');
+    price.placeholder = START_PRICE;
+    price.min = '1000';
     var form = document.querySelector('.ad-form');
     form.reset();
     var filter = document.querySelector('.map__filters');
     filter.reset();
     var position = document.querySelector('#address');
-    position.value = '570px ' + '375px';
-    var mainPin = document.querySelector('.map__pin--main');
+    position.value = '600px ' + '380px';
     mainPin.style.left = '570px';
     mainPin.style.top = '375px';
   };
 
   var reset = function () {
     var resetButton = document.querySelector('.ad-form__reset');
-    resetButton.addEventListener('click', function () {
-      window.getSiteInStart();
-    });
+    resetButton.removeEventListener('click', window.getSiteInStart);
+    resetButton.addEventListener('click', window.getSiteInStart);
     resetButton.addEventListener('keypress', function (evt) {
       if (evt.key === 'Enter') {
         window.getSiteInStart();
       }
-    });
-    resetButton.removeEventListener('click', function () {
-    });
-    resetButton.removeEventListener('keypress', function () {
     });
   };
   reset();

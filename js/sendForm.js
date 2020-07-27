@@ -1,8 +1,8 @@
 'use strict';
 (function () {
   window.sendForm = function () {
-    var method = 'POST';
-    var url = ' https://javascript.pages.academy/keksobooking';
+    var METHOD = 'POST';
+    var URL = ' https://javascript.pages.academy/keksobooking';
     var notice = document.querySelector('.notice');
 
     var onSuccess = function () {
@@ -15,14 +15,11 @@
         deletePopup.remove();
       });
 
-      document.addEventListener('keypress', function (evt) {
+      document.addEventListener('keydown', function (evt) {
         if (evt.key === 'Escape') {
+          evt.preventDefault();
           deletePopup.remove();
         }
-      });
-      document.removeEventListener('click', function () {
-      });
-      document.removeEventListener('keypress', function () {
       });
     };
 
@@ -54,20 +51,13 @@
         });
       }
       if (divError) {
-        document.addEventListener('keypress', function (evt) {
-          if (evt.key === 'Esc') {
+        document.addEventListener('keydown', function (evt) {
+          if (evt.key === 'Escape') {
+            evt.preventDefault();
             divError.remove();
           }
         });
       }
-      document.removeEventListener('keypress', function () {
-      });
-      document.removeEventListener('click', function () {
-      });
-      closeError.removeEventListener('click', function () {
-      });
-      closeError.removeEventListener('keypress', function () {
-      });
     };
 
     var submit = document.querySelector('.ad-form');
@@ -80,7 +70,7 @@
       formData.append('address', position.value);
       formData.append('avatar', avatar.value);
       formData.append('images', image.value);
-      window.serverCommunication(onSuccess, onError, url, method, formData);
+      window.serverCommunication(onSuccess, onError, URL, METHOD, formData);
     };
   };
 })();

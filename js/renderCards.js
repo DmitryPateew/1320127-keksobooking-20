@@ -18,27 +18,28 @@
     close.addEventListener('click', function () {
       var exectCard = document.querySelector('.popup');
       exectCard.remove();
+      window.removeActivPin();
     });
 
-    close.addEventListener('keypress', function (evt) {
+    close.addEventListener('keydown', function (evt) {
       if (evt.key === 'Enter') {
         var exectCard = document.querySelector('.popup');
-        exectCard.remove();
+        if (exectCard) {
+          exectCard.remove();
+          window.removeActivPin();
+        }
       }
     });
-    document.addEventListener('keypress', function (evt) {
-      if (evt.key === 'Esc') {
+    document.body.addEventListener('keydown', function (evt) {
+      if (evt.key === 'Escape') {
+        evt.preventDefault();
         var exectCard = document.querySelector('.popup');
-        exectCard.remove();
+        if (exectCard) {
+          exectCard.remove();
+          window.removeActivPin();
+        }
       }
     });
-    document.removeEventListener('keypress', function () {
-    });
-    close.removeEventListener('click', function () {
-    });
-    close.removeEventListener('keypress', function () {
-    });
-
     if (data[id].author.avatar) {
       img.src = data[id].author.avatar;
     } else {
@@ -113,8 +114,7 @@
 
     var photos = clone.querySelector('.popup__photos');
     var photo = clone.querySelector('.popup__photo');
-
-    if (data[id].offer.photos !== []) {
+    if (data[id].offer.photos + '' !== '') {
       for (var iter = 0; iter < data[id].offer.photos.length; iter++) {
         photo.src = data[id].offer.photos[iter];
         var newClonePhoto = photo.cloneNode();

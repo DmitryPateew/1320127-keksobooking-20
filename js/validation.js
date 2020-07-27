@@ -57,22 +57,27 @@
       switch (type.value) {
         case 'bungalo':
           price.placeholder = MIN_PRICE_FOR_BUNGALO;
+          price.min = MIN_PRICE_FOR_BUNGALO;
           priceListner(MIN_PRICE_FOR_BUNGALO);
           break;
         case 'flat':
           price.placeholder = MIN_PRICE_FOR_FLAT;
+          price.min = MIN_PRICE_FOR_FLAT;
           priceListner(MIN_PRICE_FOR_FLAT);
           break;
         case 'house':
           price.placeholder = MIN_PRICE_FOR_HOUSE;
+          price.min = MIN_PRICE_FOR_HOUSE;
           priceListner(MIN_PRICE_FOR_HOUSE);
           break;
         case 'palace':
           price.placeholder = MIN_PRICE_FOR_PALACE;
+          price.min = MIN_PRICE_FOR_PALACE;
           priceListner(MIN_PRICE_FOR_PALACE);
           break;
         default:
           price.placeholder = MIN_PRICE_FOR_FLAT;
+          price.min = MIN_PRICE_FOR_FLAT;
           priceListner(MIN_PRICE_FOR_FLAT);
           break;
       }
