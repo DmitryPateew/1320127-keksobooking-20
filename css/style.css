@@ -202,6 +202,7 @@ fieldset {
 }
 
 .map__pin--main {
+  position: absolute;
   width: 65px;
   height: 65px;
 

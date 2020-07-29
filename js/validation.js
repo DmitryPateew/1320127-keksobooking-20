@@ -41,15 +41,17 @@
   var price = document.querySelector('#price');
 
   var priceListner = function (minValue) {
-    price.addEventListener('input', function () {
+    price.addEventListener('oninput ', function () {
       var value = price.value;
       if (value < minValue) {
         price.setCustomValidity('Минимальная цена для данного типа помещения ' + minValue);
       } else {
         price.setCustomValidity('');
+
       }
     });
   };
+
 
   var priceValidation = function () {
     var type = document.querySelector('#type');
@@ -118,7 +120,7 @@
   checkValidation(DEPEND_CHECK_OUT);
   checkValidation(DEPEND_CHECK_IN);
 
-  var createOption = function (value, guest) {
+  window.createOption = function (value, guest) {
     var option = document.createElement('option');
     var forGuest = 'для ';
     if (guest === undefined) {
@@ -141,22 +143,22 @@
       switch (room.value) {
         case '1':
           guests.innerHTML = '';
-          guests.appendChild(createOption('1', ' гостя'));
+          guests.appendChild(window.createOption('1', ' гостя'));
           break;
         case '2':
           guests.innerHTML = '';
-          guests.appendChild(createOption('1', ' гостя'));
-          guests.appendChild(createOption('2'));
+          guests.appendChild(window.createOption('1', ' гостя'));
+          guests.appendChild(window.createOption('2'));
           break;
         case '3':
           guests.innerHTML = '';
-          guests.appendChild(createOption('1', ' гостя'));
-          guests.appendChild(createOption('2'));
-          guests.appendChild(createOption('3'));
+          guests.appendChild(window.createOption('1', ' гостя'));
+          guests.appendChild(window.createOption('2'));
+          guests.appendChild(window.createOption('3'));
           break;
         case '100':
           guests.innerHTML = '';
-          guests.appendChild(createOption('0'));
+          guests.appendChild(window.createOption('0'));
           break;
       }
     });

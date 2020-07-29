@@ -53,23 +53,23 @@
       } else {
         switch (compareValue) {
           case 'middle':
-            for (var i = 0; filtredData.length < PIN_COUNT && i < dataServer.length; i++) {
-              if (dataServer[i].offer.price >= 10000 && dataServer[i].offer.price < 50000) {
-                filtredData.push(dataServer[i]);
+            for (var t = 0; filtredData.length < PIN_COUNT && t < dataServer.length; t++) {
+              if (dataServer[t].offer.price >= 10000 && dataServer[t].offer.price < 50000) {
+                filtredData.push(dataServer[t]);
               }
             }
             break;
           case 'low':
-            for (i = 0; filtredData.length < PIN_COUNT && i < dataServer.length; i++) {
-              if (dataServer[i].offer.price < 10000) {
-                filtredData.push(dataServer[i]);
+            for (var p = 0; filtredData.length < PIN_COUNT && p < dataServer.length; p++) {
+              if (dataServer[p].offer.price < 10000) {
+                filtredData.push(dataServer[p]);
               }
             }
             break;
           case 'high':
-            for (i = 0; filtredData.length < PIN_COUNT && i < dataServer.length; i++) {
-              if (dataServer[i].offer.price > 10000) {
-                filtredData.push(dataServer[i]);
+            for (var n = 0; filtredData.length < PIN_COUNT && n < dataServer.length; n++) {
+              if (dataServer[n].offer.price > 10000) {
+                filtredData.push(dataServer[n]);
               }
             }
         }
@@ -201,6 +201,7 @@
         }
         compareFeatures(dataServer, newFeatures);
       });
+      compareFeatures(dataServer, newFeatures);
     };
 
 
@@ -217,9 +218,9 @@
 
     window.deletePopup = function () {
       window.removeActivPin();
-      var allCards = document.querySelector('.popup');
-      if (allCards) {
-        allCards.remove();
+      var popup = document.querySelector('.popup');
+      if (popup) {
+        popup.remove();
       }
     };
     window.serverCommunication(onSuccess, onError, URL, METHOD);

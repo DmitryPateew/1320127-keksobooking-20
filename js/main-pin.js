@@ -1,15 +1,13 @@
 'use strict';
 
 (function () {
-  var MIN_TOP_VALUE = 120;
-  var MAX_TOP_VALUE = 548;
+  var MIN_TOP_VALUE = 122;
+  var MAX_TOP_VALUE = 542;
 
-  var MIN__LEFT__VALUE = 134;
-  var MAX__LEFT__VALUE = 1268;
-
-  var X_SIZE = 34;
+  var MAP__WITH = 1200;
+  var X_SIZE = 65;
+  var X_SIZE__FOR__INPUT = 32;
   var Y_SIZE = 87;
-
 
   var mainPin = document.querySelector('.map__pin--main');
   var adressField = document.querySelector('#address');
@@ -18,9 +16,12 @@
 
   mainPin.addEventListener('mousedown', function (evt) {
     evt.preventDefault();
+    var screenWith = document.documentElement.clientWidth;
+    var startX = (screenWith - MAP__WITH + X_SIZE) / 2;
+    var finishX = startX + MAP__WITH - X_SIZE;
     var startCoords = {
-      x: evt.clientX,
-      y: evt.clientY
+      x: evt.pageX,
+      y: evt.pageY
     };
 
     var dragged = false;
@@ -31,36 +32,25 @@
       dragged = true;
 
       var shift = {
-        x: startCoords.x - moveEvt.clientX,
-        y: startCoords.y - moveEvt.clientY
+        x: startCoords.x - moveEvt.pageX,
+        y: startCoords.y - moveEvt.pageY
       };
 
       startCoords = {
-        x: moveEvt.clientX,
-        y: moveEvt.clientY
+        x: moveEvt.pageX,
+        y: moveEvt.pageY
       };
 
-      if (moveEvt.clientY > MIN_TOP_VALUE && moveEvt.clientY < MAX_TOP_VALUE) {
+
+      if (moveEvt.pageY > MIN_TOP_VALUE && moveEvt.pageY < MAX_TOP_VALUE) {
         mainPin.style.top = (mainPin.offsetTop - shift.y) + 'px';
+        adressField.value = (mainPin.offsetLeft - shift.x + X_SIZE__FOR__INPUT) + 'px ' + (mainPin.offsetTop - shift.y + Y_SIZE) + 'px';
       }
 
-      if (moveEvt.clientX > MIN__LEFT__VALUE && moveEvt.clientX < MAX__LEFT__VALUE) {
+      if (moveEvt.pageX > startX && moveEvt.pageX < finishX) {
         mainPin.style.left = (mainPin.offsetLeft - shift.x) + 'px';
+        adressField.value = (mainPin.offsetLeft - shift.x + X_SIZE__FOR__INPUT) + 'px ' + (mainPin.offsetTop - shift.y + Y_SIZE) + 'px';
       }
-      var yCoord = mainPin.offsetTop - shift.y + Y_SIZE;
-      if (yCoord < 130) {
-        adressField.value = (mainPin.offsetLeft - shift.x + X_SIZE) + 'px ' + '130px';
-      } else {
-        adressField.value = (mainPin.offsetLeft - shift.x + X_SIZE) + 'px ' + (mainPin.offsetTop - shift.y + Y_SIZE) + 'px';
-      }
-
-      if (yCoord > 630) {
-        adressField.value = (mainPin.offsetLeft - shift.x + X_SIZE) + 'px ' + '630px';
-      } else {
-        adressField.value = (mainPin.offsetLeft - shift.x + X_SIZE) + 'px ' + (mainPin.offsetTop - shift.y + Y_SIZE) + 'px';
-      }
-
-
     };
 
     var onMouseUp = function (upEvt) {

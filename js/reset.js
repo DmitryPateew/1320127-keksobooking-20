@@ -21,6 +21,9 @@
     if (popup) {
       popup.remove();
     }
+    var guests = document.querySelector('#capacity');
+    guests.innerHTML = '';
+    guests.appendChild(window.createOption('1', ' гостя'));
     var price = document.querySelector('#price');
     price.placeholder = START_PRICE;
     price.min = '1000';

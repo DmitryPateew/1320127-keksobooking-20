@@ -13,7 +13,7 @@
       quantity = PIN_COUNT;
     }
     for (var i = 0; i < quantity; i++) {
-      if (dataServer[i].offer) {
+      if (dataServer[i].hasOwnProperty('offer')) {
         fragment.appendChild(createPinElement(dataServer, i));
       }
     }
